@@ -21,5 +21,4 @@ public class ProductCSVReader {
 		}
 		return products;
 	}
-
 }
