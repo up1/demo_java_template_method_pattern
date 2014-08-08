@@ -8,18 +8,18 @@ import java.util.List;
 
 public class CustomerCSVReader {
 
-	public List<Customer> getAll(File customersFile) throws Exception {
-		List<Customer> customers = new ArrayList<Customer>();
-		try (BufferedReader reader = new BufferedReader(new FileReader(customersFile))) {
+	public List<Customer> getAll(File file) throws Exception {
+		List<Customer> returnData = new ArrayList<Customer>();
+		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 			String line = reader.readLine();
-			while (line != null && !line.trim().equals("")) {
+			while (line != null && !"".equals(line.trim())) {
 				String[] tokens = line.split("\\s*,\\s*");
 				Customer customer = new Customer(Integer.parseInt(tokens[0]), tokens[1], tokens[2]);
-				customers.add(customer);
+				returnData.add(customer);
 				line = reader.readLine();
 			}
 		}
-		return customers;
+		return returnData;
 	}
 
 }
