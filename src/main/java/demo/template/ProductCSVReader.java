@@ -14,11 +14,16 @@ public class ProductCSVReader {
 			String line = reader.readLine();
 			while (line != null && !"".equals(line.trim())) {
 				String[] tokens = line.split("\\s*,\\s*");
-				Product product = new Product(Integer.parseInt(tokens[0]), tokens[1], Double.parseDouble(tokens[2]));
+				Product product = unmarshall(tokens);
 				returnData.add(product);
 				line = reader.readLine();
 			}
 		}
 		return returnData;
+	}
+
+	private Product unmarshall(String[] tokens) {
+		Product product = new Product(Integer.parseInt(tokens[0]), tokens[1], Double.parseDouble(tokens[2]));
+		return product;
 	}
 }

@@ -14,12 +14,17 @@ public class CustomerCSVReader {
 			String line = reader.readLine();
 			while (line != null && !"".equals(line.trim())) {
 				String[] tokens = line.split("\\s*,\\s*");
-				Customer customer = new Customer(Integer.parseInt(tokens[0]), tokens[1], tokens[2]);
+				Customer customer = unmarshall(tokens);
 				returnData.add(customer);
 				line = reader.readLine();
 			}
 		}
 		return returnData;
+	}
+	
+	private Customer unmarshall(String[] tokens) {
+		Customer customer = new Customer(Integer.parseInt(tokens[0]), tokens[1], tokens[2]);
+		return customer;
 	}
 
 }
